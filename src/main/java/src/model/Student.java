@@ -13,9 +13,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_Generator")
     @GenericGenerator(name = "ID_Generator", strategy = "src.sequencegenerator.StringPrefixedSequenceIdGenerator",
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
                     @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "Student_"),
-                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")
+                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
             })
     private String id;
     private String name;
