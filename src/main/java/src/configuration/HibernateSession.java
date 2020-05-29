@@ -1,4 +1,4 @@
-package src;
+package src.configuration;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

@@ -1,6 +1,8 @@
 package src;
 
+import src.dao.ObjectDAO;
 import src.model.Backpack;
+import src.model.GroupId;
 import src.model.Student;
 
 public class Main {

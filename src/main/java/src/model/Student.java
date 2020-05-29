@@ -1,17 +1,23 @@
 package src.model;
 
-import src.GroupId;
+import org.hibernate.annotations.GenericGenerator;
+import src.sequencegenerator.StringPrefixedSequenceIdGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "students")
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_Generator")
+    @GenericGenerator(name = "ID_Generator", strategy = "src.sequencegenerator.StringPrefixedSequenceIdGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
+                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "Student_"),
+                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")
+            })
+    private String id;
     private String name;
     private String surname;
 
@@ -25,17 +31,13 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, String surname,GroupId groupId) {
+    public Student(String name, String surname, GroupId groupId) {
         this.name = name;
         this.surname = surname;
         this.groupId = groupId;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public Student(String id) {
         this.id = id;
     }
 

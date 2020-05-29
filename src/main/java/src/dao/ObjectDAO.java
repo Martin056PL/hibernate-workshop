@@ -1,8 +1,9 @@
-package src;
+package src.dao;
 
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import src.configuration.HibernateSession;
 
 public class ObjectDAO<T> {
 
