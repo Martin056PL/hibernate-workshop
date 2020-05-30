@@ -9,32 +9,21 @@ import java.util.Collections;
 public class Main {
 
     public static void main(String[] args) {
-     ObjectDAO<Backpack> backpackObjectDAO = new ObjectDAO<>();
-     ObjectDAO<Student> studentObjectDAO = new ObjectDAO<>();
-     ObjectDAO<Book> bookObjectDAO = new ObjectDAO<>();
-     ObjectDAO<Publisher> publisherObjectDAO = new ObjectDAO<>();
+        ObjectDAO<Backpack> backpackObjectDAO = new ObjectDAO<>();
+        ObjectDAO<Student> studentObjectDAO = new ObjectDAO<>();
+        ObjectDAO<Notepad> notepadObjectDAO = new ObjectDAO<>();
 
+        Backpack backpack = new Backpack();
+        backpack.setBrand("Nike");
+        backpackObjectDAO.save(backpack);
 
-     Backpack backpack = new Backpack();
-     backpack.setBrand("Nike");
-     backpackObjectDAO.save(backpack);
+        Student student = new Student("Marek", "Wacek", GroupId.NCI_112);
+        student.setBackpack(backpack);
+        studentObjectDAO.save(student);
 
-     Student student = new Student("Marek", "Wacek", GroupId.NCI_112);
-     student.setBackpack(backpack);
-     studentObjectDAO.save(student);
-
-
-     Publisher publisher = new Publisher("ZL");
-     Book book = new Book("Random title");
-     book.setPublisher(publisher);
-     publisherObjectDAO.save(publisher);
-     publisher.setBook(Collections.singletonList(book));
-     bookObjectDAO.save(book);
-
-
-
-
-
+        Notepad notepad = new Notepad("notepad");
+        notepad.setBackpack(Collections.singletonList(backpack));
+        notepadObjectDAO.save(notepad);
 
 
     }

@@ -14,7 +14,7 @@ public class Backpack {
     public Backpack() {
     }
 
-    public Backpack(String brand) {
+    public Backpack(String brand){
         this.brand = brand;
     }
 
