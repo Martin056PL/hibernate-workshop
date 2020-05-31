@@ -4,19 +4,20 @@ import org.hibernate.annotations.GenericGenerator;
 import src.sequencegenerator.StringPrefixedSequenceIdGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "students")
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ID_Generator")
-    @GenericGenerator(name = "ID_Generator", strategy = "src.sequencegenerator.StringPrefixedSequenceIdGenerator",
-            parameters = {
-                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "Student_"),
-                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
-            })
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE/*, generator = "ID_Generator"*/)
+//    @GenericGenerator(name = "ID_Generator", strategy = "src.sequencegenerator.StringPrefixedSequenceIdGenerator",
+//            parameters = {
+//                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "Student_"),
+//                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
+//            })
+    private Long id;
     private String name;
     private String surname;
 
@@ -27,14 +28,19 @@ public class Student {
     @OneToOne
     private Backpack backpack;
 
+    @ManyToMany(mappedBy = "studentSet")
+    private Set<Professor> professor;
+
+
+
     public Student() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -74,6 +80,15 @@ public class Student {
 
     public void setBackpack(Backpack backpack) {
         this.backpack = backpack;
+    }
+
+
+    public Set<Professor> getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Set<Professor> professor) {
+        this.professor = professor;
     }
 
     @Override

@@ -3,8 +3,6 @@ package src;
 import src.dao.ObjectDAO;
 import src.model.*;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,6 +12,7 @@ public class Main {
         ObjectDAO<Backpack> backpackDao = new ObjectDAO<>();
         ObjectDAO<Student> studentDao = new ObjectDAO<>();
         ObjectDAO<Notepad> notePadDao = new ObjectDAO<>();
+        ObjectDAO<Professor> professorObjectDAO = new ObjectDAO<>();
 
    //      NOTEPAD CREATE
         Notepad notePadMath = new Notepad();
@@ -37,15 +36,22 @@ public class Main {
         // STUDENT CREATE
         Student studentPrzemek = new Student("Przemek", "Bykowski", GroupId.NCI_112);
         studentPrzemek.setBackpack(backpackNike);
-        studentDao.save(studentPrzemek);
 
         Student studentAnna = new Student("Anna", "Nowak", GroupId.NCI_135);
         studentAnna.setBackpack(backpackPuma);
+
+        //PROFESSORS CREATE
+        Professor professorWazny = new Professor("Wazny", "Wazniejszy");
+        professorWazny.setStudentSet(Stream.of(studentPrzemek, studentAnna).collect(Collectors.toSet()));
+
+
+        studentPrzemek.setProfessor(Stream.of(professorWazny).collect(Collectors.toSet()));
+        studentDao.save(studentPrzemek);
+
+        studentAnna.setProfessor(Stream.of(professorWazny).collect(Collectors.toSet()));
         studentDao.save(studentAnna);
 
-
-
-
+        professorObjectDAO.save(professorWazny);
     }
 
 

@@ -14,6 +14,7 @@
 
 
         <mapping class="src.model.Student"/>
+        <mapping class="src.model.Professor"/>
         <mapping class="src.model.Backpack"/>
         <mapping class="src.model.mymodels.Book"/>
         <mapping class="src.model.mymodels.Publisher"/>
