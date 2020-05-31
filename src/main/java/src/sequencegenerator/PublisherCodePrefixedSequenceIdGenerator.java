@@ -8,7 +8,7 @@ import org.hibernate.internal.util.config.ConfigurationHelper;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.type.LongType;
 import org.hibernate.type.Type;
-import src.model.Book;
+import src.model.mymodels.Book;
 
 import java.io.Serializable;
 import java.util.Properties;

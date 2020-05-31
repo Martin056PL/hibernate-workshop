@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_Generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ID_Generator")
     @GenericGenerator(name = "ID_Generator", strategy = "src.sequencegenerator.StringPrefixedSequenceIdGenerator",
             parameters = {
                     @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "Student_"),
@@ -30,14 +30,26 @@ public class Student {
     public Student() {
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public Student(String name, String surname, GroupId groupId) {
         this.name = name;
         this.surname = surname;
         this.groupId = groupId;
-    }
-
-    public Student(String id) {
-        this.id = id;
     }
 
     public String getName() {

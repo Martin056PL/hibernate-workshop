@@ -1,4 +1,4 @@
-package src.model;
+package src.model.mymodels;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;

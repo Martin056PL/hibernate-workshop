@@ -11,8 +11,8 @@ public class ObjectDAO<T> {
     public void save(T element) {
         Session session = HibernateSession.INSTANCE.getSessionFactory().openSession();
         Transaction transaction = session.getTransaction();
+        transaction.begin();
         try {
-            transaction.begin();
             session.save(element);
             transaction.commit();
         } catch (Exception exception) {

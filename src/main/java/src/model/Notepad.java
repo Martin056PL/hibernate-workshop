@@ -1,8 +1,6 @@
 package src.model;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "notepads")
@@ -10,12 +8,9 @@ public class Notepad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long notepadId;
+    @Column(name = "notepad_id")
+    private Long id;
     private String title;
-
-    @OneToMany
-    @JoinColumn(name = "id")
-    private List<Backpack> backpack;
 
     public Notepad() {
     }
@@ -24,12 +19,12 @@ public class Notepad {
         this.title = title;
     }
 
-    public Long getNotepadId() {
-        return notepadId;
+    public Long getId() {
+        return id;
     }
 
-    public void setNotepadId(Long notepadId) {
-        this.notepadId = notepadId;
+    public void setId(Long notepadId) {
+        this.id = notepadId;
     }
 
     public String getTitle() {
@@ -38,13 +33,5 @@ public class Notepad {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public List<Backpack> getBackpack() {
-        return backpack;
-    }
-
-    public void setBackpack(List<Backpack> backpack) {
-        this.backpack = backpack;
     }
 }

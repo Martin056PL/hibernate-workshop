@@ -1,4 +1,4 @@
-package src.model;
+package src.model.mymodels;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,11 +10,13 @@ public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String code;
 
     @OneToMany(mappedBy = "publisher")
     private List<Book> book;
+
+    public Publisher() {
+    }
 
     public Publisher(String code) {
         this.code = code;
